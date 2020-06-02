@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var FieldType;
 (function (FieldType) {
     FieldType["Text"] = "text";
@@ -9,3 +9,4 @@ var FieldType;
     FieldType["Checkbox"] = "checkbox";
     FieldType["Data"] = "date";
 })(FieldType = exports.FieldType || (exports.FieldType = {}));
+//# sourceMappingURL=EFieldType.js.map
