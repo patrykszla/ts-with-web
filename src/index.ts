@@ -55,18 +55,31 @@ class App {
 class App {
 
     constructor() {
-        const newForm = new Form(); 
-        newForm.render();
-        document.getElementById('submit').addEventListener('click', (e) => {
-           e.preventDefault();
-            newForm.getValue();
-            newForm.save();
-        })
-        document.getElementById('save').addEventListener('click',() => {
-            newForm.save();
-            const documentList = new DocumentList().render();
-            
-        })
+        // const newForm = new Form(); 
+        // newForm.render();
+        // document.getElementById('submit').addEventListener('click', (e) => {
+        //    e.preventDefault();
+        //     newForm.getValue();
+        //     newForm.save();
+        // })
+        if (window.location.pathname == "/new-document.html") {
+            const form = new Form();
+            form.render();
+        } else if (window.location.pathname == "/document-list.html") {
+            const listOfDocuments = new DocumentList();
+            // const listRender = listOfDocuments.render();
+            document.getElementById("document-list-wrapper").append(listOfDocuments.render());
+            var back : HTMLButtonElement = document.createElement('button');
+            back.innerText = 'Wstecz';
+            back.className = 'back';
+            back.addEventListener('click', () => {
+                window.location.href = '/index.html'
+            })
+            document.getElementById('document-list-wrapper').prepend(back);
+           
+        }
+      
+        
     }
 }
 

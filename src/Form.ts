@@ -38,12 +38,12 @@ export class Form {
 
         
         const initialValue:any = {};
-        for (var i = 0; i < this.arrayOfFields.length; i++ ) {
-            initialValue[this.arrayOfFields[i].label] = this.arrayOfFields[i].getValue();
-            var element = document.createElement("p");
-            element.innerText = (this.arrayOfFields[i].getValue());
-            document.getElementById('render-wrapper').after(element);
-        }
+        // for (var i = 0; i < this.arrayOfFields.length; i++ ) {
+        //     initialValue[this.arrayOfFields[i].label] = this.arrayOfFields[i].getValue();
+        //     var element = document.createElement("p");
+        //     element.innerText = (this.arrayOfFields[i].getValue());
+        //     document.getElementById('render-wrapper').after(element);
+        // }
 
  
     /*for (var i = 0; i < this.arrayOfFields.length; i++ ) {
@@ -77,27 +77,46 @@ export class Form {
         for (var i = 0; i < this.arrayOfFields.length; i++) {
             (this.arrayOfFields[i].render());
         }
-        let buttonSave = document.createElement('button');
+        let buttonSave: HTMLButtonElement = document.createElement('button');
         buttonSave.id = 'save';
-        buttonSave.innerText = "Save";
+        buttonSave.innerText = "Zapisz";
         document.getElementById('main-form').after(buttonSave);
-
+        let buttonBack = document.createElement('button');
+        document.getElementById('save').addEventListener('click',() => {
+            this.save();
+        })
+        buttonBack.id = 'back';
+        buttonBack.innerText = 'Wstecz';
+        document.getElementById('main-form').before(buttonBack);
+        document.getElementById('back').addEventListener('click',() => {
+            window.location.href = '/index.html'
+        })
+     
     }
+    
 
     
       save() {
 
         const save = new LocalStorage();
-        
         save.saveDocument(this.getValue());
-        const documentList = new DocumentList();
-        documentList.getDocumentList();
-        documentList.render();
-
         
-        // window.location.href = '/index.html';
+        // documentList.render();
+        window.location.href = '/index.html';
 
     }
+    // renderList() {
+    //     var buttonBackTwo : HTMLButtonElement = document.createElement('button');
+    //     buttonBackTwo.id = 'back2';
+    //     buttonBackTwo.innerText = 'Wstecz';
+    //     buttonBackTwo.className = 'back';
+    //     document.getElementById('document-list-wrapper').append(buttonBackTwo);
+    //     document.getElementById('back2').addEventListener('click', () => {
+    //         window.location.href = '/index.html'
+    //     })
+    //     const documentList = new DocumentList();
+    //     documentList.getDocumentList();
+    // }
         
 
     

@@ -1,12 +1,13 @@
 import { LocalStorage } from "./LocalStorage";
 import { Form } from "./Form";
 import { keyArray } from "./Variables";
+import { throws } from "assert";
 
 export class DocumentList {
     arrayOfDocuments: string[];
     getDocumentList():string[] {
          const newLocalStorage = new LocalStorage;
-         newLocalStorage.getDocuments();
+        //  newLocalStorage.getDocuments();
         //  newLocal.getItem(keyArray);
         //  console.log(newLocalStorage.getDocuments());
          this.arrayOfDocuments = newLocalStorage.getDocuments();
@@ -15,40 +16,33 @@ export class DocumentList {
          return this.arrayOfDocuments;
     }
 
-    render(): HTMLTableElement {
-        let newTable = document.createElement('table');
-        let row = document.createElement('tr');
-        newTable.append(row);
+    render(): HTMLUListElement {
+        var link = document.createElement('a');
         this.getDocumentList();
-        // const parsedArray = JSON.stringify(this.arrayOfDocuments);
-        // console.log(parsedArray);
+        var newDiv = document.createElement('div');
+        newDiv.id = 'keys-wrapper';
+        document.getElementById('document-list-wrapper').append(newDiv);
         
+       var listOfKeys = document.createElement('ul');
+        listOfKeys.id = 'list-of-keys';
+        newDiv.append(listOfKeys);
 
-        // this.arrayOfDocuments.forEach(function(value, key) {
-        //     console.log(key + ' = ' + value)
-        //   })
+        for(let i = 0; i < this.arrayOfDocuments.length; i++ ) {
+            var newDiv = document.createElement('div');
+            newDiv.className = 'links-wrapper';
+            var newLi = document.createElement('li');
+            newLi.innerText = this.arrayOfDocuments[i];
+            listOfKeys.append(newDiv);
+            newDiv.append(newLi);
+        }
+        // this.arrayOfDocuments.forEach(element => {
+        //     var newLi = document.createElement('li');
+        //     newLi.innerText = element;
+        //     listOfKeys.append(newLi);
+            
+        // });
         
-        // var res = this.arrayOfDocuments.split(" ");
-        // var contact = JSON.parse(this.arrayOfDocuments);
-        // const parsedArray = JSON.parse(this.arrayOfDocuments)
-
-        // for (let i = 0; i < this.arrayOfDocuments.length; i++) {
-        //     let newTd = document.createElement('td');
-        //     newTd.innerText = this.arrayOfDocuments[i];
-        //     row.append(newTd);
-        // }
-       
+       return listOfKeys
         
-       return newTable
-        
-        
-        
-        // let newUl = document.createElement('ul');
-        // newUl.id = 'render-document-list';
-        // let newLi = document.createElement('li');
-        // newLi.
-        
-        // document.getElementById('render-wrapper').append(newUl);
-        // this.getDocumentList()
     }
 }
