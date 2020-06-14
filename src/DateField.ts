@@ -25,7 +25,7 @@ export class DateField implements IField {
     render(): HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');
         wrapper.className = ("form-div");
-        document.getElementById("main-form").prepend(wrapper);
+        // document.getElementById("main-form").prepend(wrapper);
         new FieldLabel(this.name, this.label, wrapper).render();
         const inputElement = <HTMLInputElement>document.createElement('input');
         // inputElement.value = new Date().getTime();

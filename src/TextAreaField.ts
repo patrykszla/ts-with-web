@@ -8,6 +8,7 @@ export class TextAreaField implements IField {
     label: string;
     type: FieldType;
     value: string;
+    id: any;
     constructor(name:string, label: string, type:FieldType, value?:string) {
         this.name = name;
         this.label = label;

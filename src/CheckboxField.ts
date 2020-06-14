@@ -7,6 +7,7 @@ export class CheckboxField implements IField {
     label: string;
     type: FieldType;
     value: string;
+    id: string;
     constructor(name:string, label: string, type: FieldType, value?: string) {
         this.name = name;
         this.label = label;

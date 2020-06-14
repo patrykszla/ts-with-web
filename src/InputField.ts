@@ -7,8 +7,8 @@ export class InputField implements IField {
     name: string;
     label: string;
     type: FieldType;
-    
     value: string;
+    id: string;
     constructor(name: string, label: string, type: FieldType, value?: string) {
         this.name = name ? name : this.name;
         this.label = label ? label : this.label;

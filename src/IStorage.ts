@@ -1,5 +1,5 @@
 export interface Storage {
-    saveDocument(object:any): string;
-    loadDocument(id:string): string;
-    getDocuments(): object[];
+    saveDocument(object: any): string,
+    loadDocument(string: string): object,
+    getDocuments(): string[]
 }

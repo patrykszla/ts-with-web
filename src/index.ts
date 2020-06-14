@@ -1,4 +1,5 @@
 import { Form } from "./Form"
+import { DocumentList } from "./DocumentList";
 
 
 
@@ -56,9 +57,15 @@ class App {
     constructor() {
         const newForm = new Form(); 
         newForm.render();
-        document.getElementById('submit').addEventListener('click', (event) => {
-            event.preventDefault();
+        document.getElementById('submit').addEventListener('click', (e) => {
+           e.preventDefault();
             newForm.getValue();
+            newForm.save();
+        })
+        document.getElementById('save').addEventListener('click',() => {
+            newForm.save();
+            const documentList = new DocumentList().render();
+            
         })
     }
 }
