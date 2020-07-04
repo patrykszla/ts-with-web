@@ -38,7 +38,8 @@ export class DocumentList {
             divForLink.append(newLi);
             var link = document.createElement('a');
             link.innerText = this.arrayOfDocuments[i];
-            link.href = "./index.html";
+            link.href = "edit-document.html?id="+this.arrayOfDocuments[i];
+            // link.href = "./index.html";
             newLi.append(link);
 
             var buttonDelete = document.createElement('button');
@@ -46,22 +47,9 @@ export class DocumentList {
             buttonDelete.className = 'button-delete'
             newLi.append(buttonDelete);
             buttonDelete.addEventListener('click', () => {
-                
-            //   this.documentId = this.arrayOfDocuments[i];
-            //   console.log(this.documentId);
               this.removeDocument(this.arrayOfDocuments[i]);
             })
-
-            // newLi.innerText = this.arrayOfDocuments[i];
-            // listOfKeys.append(divForLink);
-            // divForLink.append(newLi);
-
         }
-        // this.arrayOfDocuments.forEach(element => {
-        //     var newLi = document.createElement('li');
-        //     newLi.innerText = element;
-        //     listOfKeys.append(newLi);
-        // });
        return listOfKeys
         
     }
@@ -71,9 +59,37 @@ export class DocumentList {
         var newLocalStorage = new LocalStorage();
         newLocalStorage.removeItem(id);
         document.getElementById(id).remove();
+        var arrayOfDocumentsRemove = [];
+        console.log(keyArray);
                 // newLocalStorage.removeItem();
         // document.removeChild()
+
+        var documents = newLocalStorage.getDocuments();
+
+        for (let i = 0; i<documents.length; i++) {
+            if (documents[i] != id) {
+                arrayOfDocumentsRemove[i] = documents[i];
+                
+            } else {
+                console.log('delete');
+            }
+        }
+
+        var filtered = arrayOfDocumentsRemove.filter(function (el) {
+            return el != null;
+          });
+          
+          console.log(filtered);
+        console.log(arrayOfDocumentsRemove);
+        newLocalStorage.removeItem(keyArray);
+        newLocalStorage.setItem(keyArray, JSON.stringify(filtered));
+        // newLocalStorage.getDocuments()
                 console.log('button delete');
+        
                 // divForLink.remove();
+    }
+    getDocument(id:string):object{
+        const getDocument = new LocalStorage();
+        return  getDocument.loadDocument(id);
     }
 }

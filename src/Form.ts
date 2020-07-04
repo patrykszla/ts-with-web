@@ -21,7 +21,20 @@ export class Form {
     new DateField("data", "Data:", FieldType.Data, ' ' )];
     constructor(){}
 
-    
+    insertValue(documentData:any){
+        var checkboxElement = <HTMLInputElement>document.getElementById('checkbox');
+        this.arrayOfFields.forEach(el => {
+            if(documentData.hasOwnProperty(el.name)){
+                el.value = documentData[el.name];
+            }
+        if(el.value === "preferuje e-learning"){
+            // checkboxElement.checked = false;
+            // selectElement.checked = true;
+            console.log('preferuje');
+        }
+        })
+        
+    }
     
     getValue() {
         // const answer: { [key: string]: string | number } = {};
@@ -38,12 +51,12 @@ export class Form {
 
         
         const initialValue:any = {};
-        // for (var i = 0; i < this.arrayOfFields.length; i++ ) {
-        //     initialValue[this.arrayOfFields[i].label] = this.arrayOfFields[i].getValue();
-        //     var element = document.createElement("p");
-        //     element.innerText = (this.arrayOfFields[i].getValue());
-        //     document.getElementById('render-wrapper').after(element);
-        // }
+        for (var i = 0; i < this.arrayOfFields.length; i++ ) {
+            initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
+            var element = document.createElement("p");
+            element.innerText = (this.arrayOfFields[i].getValue());
+            // document.getElementById('render-wrapper').after(element);
+        }
 
  
     /*for (var i = 0; i < this.arrayOfFields.length; i++ ) {

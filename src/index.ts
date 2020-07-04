@@ -1,5 +1,6 @@
 import { Form } from "./Form"
 import { DocumentList } from "./DocumentList";
+import { Router } from "./Router";
 
 
 
@@ -64,6 +65,18 @@ class App {
         // })
         if (window.location.pathname == "/new-document.html") {
             const form = new Form();
+            form.render();
+        } else if (window.location.pathname == "/edit-document.html") {
+            // const newRouter = n
+            const getParam = new Router().getParam("id");
+            const documentList = new DocumentList();
+            const getDocument = documentList.getDocument(getParam);
+            console.log(getDocument);
+            // if(getDocument === null){
+            //     window.location.replace("/index.html");
+            // }
+            const form = new Form();
+            form.insertValue(getDocument);
             form.render();
         } else if (window.location.pathname == "/document-list.html") {
             const listOfDocuments = new DocumentList();

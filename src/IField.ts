@@ -7,4 +7,4 @@ export interface IField {
     value: string;
     render(): HTMLElement;
     getValue(): string;
-} 
+}

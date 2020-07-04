@@ -1,9 +1,8 @@
 import { Storage } from "./IStorage";
 import { keyArray } from "./Variables";
-// import { valuesArr } from "./Variables";
+import { valuesArr } from "./Variables";
 
 export class LocalStorage implements Storage {
-    
 
     clear(): void {
         localStorage.clear();
