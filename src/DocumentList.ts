@@ -55,34 +55,34 @@ export class DocumentList {
     }
 
     removeDocument(id:string) :void {
-        // id = this.documentId;
         var newLocalStorage = new LocalStorage();
-        newLocalStorage.removeItem(id);
+        // newLocalStorage.removeItem(id);
         document.getElementById(id).remove();
-        var arrayOfDocumentsRemove = [];
-        console.log(keyArray);
+        newLocalStorage.removeDocument(id);
+        // var arrayOfDocumentsRemove = [];
+        // console.log(keyArray);
                 // newLocalStorage.removeItem();
         // document.removeChild()
 
-        var documents = newLocalStorage.getDocuments();
+        // var documents = newLocalStorage.getDocuments();
 
-        for (let i = 0; i<documents.length; i++) {
-            if (documents[i] != id) {
-                arrayOfDocumentsRemove[i] = documents[i];
+        // for (let i = 0; i<documents.length; i++) {
+        //     if (documents[i] != id) {
+        //         arrayOfDocumentsRemove[i] = documents[i];
                 
-            } else {
-                console.log('delete');
-            }
-        }
+        //     } else {
+        //         console.log('delete');
+        //     }
+        // }
 
-        var filtered = arrayOfDocumentsRemove.filter(function (el) {
-            return el != null;
-          });
+        // var filtered = arrayOfDocumentsRemove.filter(function (el) {
+        //     return el != null;
+        //   });
           
-          console.log(filtered);
-        console.log(arrayOfDocumentsRemove);
-        newLocalStorage.removeItem(keyArray);
-        newLocalStorage.setItem(keyArray, JSON.stringify(filtered));
+        //   console.log(filtered);
+        // console.log(arrayOfDocumentsRemove);
+        // newLocalStorage.removeItem(keyArray);
+        // newLocalStorage.setItem(keyArray, JSON.stringify(filtered));
         // newLocalStorage.getDocuments()
                 console.log('button delete');
         

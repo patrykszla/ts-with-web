@@ -22,17 +22,16 @@ export class Form {
     constructor(){}
 
     insertValue(documentData:any){
-        var checkboxElement = <HTMLInputElement>document.getElementById('checkbox');
+       
         this.arrayOfFields.forEach(el => {
             if(documentData.hasOwnProperty(el.name)){
                 el.value = documentData[el.name];
             }
         if(el.value === "preferuje e-learning"){
-            // checkboxElement.checked = false;
-            // selectElement.checked = true;
             console.log('preferuje');
         }
         })
+
         
     }
     
@@ -57,6 +56,7 @@ export class Form {
             element.innerText = (this.arrayOfFields[i].getValue());
             // document.getElementById('render-wrapper').after(element);
         }
+
 
  
     /*for (var i = 0; i < this.arrayOfFields.length; i++ ) {

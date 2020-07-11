@@ -16,11 +16,27 @@ export class DateField implements IField {
         this.type = FieldType.Data;
     }
     getValue(): string {
+        // const date = JSON.stringify(Date.now());
+        // console.log(date);
+
+        var today:Date = new Date();
+        var dd: string = JSON.stringify(today.getDay()+5);
+        var mm: string = JSON.stringify(today.getDate());
+        var yy: string = JSON.stringify(today.getFullYear());
+
+        var date:string = dd + "/" + mm + "/" + yy;
+        
+        console.log(date);
+
+
+        
+        
+
         // return this.Value;
         // var dateValue = (<HTMLInputElement>document.getElementById(this.name)).value;
         // var dateVal:number = new Date().getTime();
         // var stringDateVal:string = this.id.toString();
-        return this.value;
+       return date;
     }
     render(): HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');

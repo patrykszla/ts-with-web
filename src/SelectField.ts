@@ -22,6 +22,7 @@ export class SelectField implements IField {
             selectValue = "Tryb dzienny";
         }
         return selectValue
+        return this.value;
     }
     render():HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');
