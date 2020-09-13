@@ -8,7 +8,7 @@ export class InputField implements IField {
     label: string;
     type: FieldType;
     value: string;
-    id: string;
+    id: string = new Date().getTime().toString();
     constructor(name: string, label: string, type: FieldType, value?: string) {
         this.name = name ? name : this.name;
         this.label = label ? label : this.label;
@@ -16,16 +16,16 @@ export class InputField implements IField {
         this.value = value? value : this.value;
     }
     getValue(): string {
-        var inputVal = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var inputVal = (<HTMLInputElement>document.getElementById(this.id + this.name)).value;
         return inputVal
     }
-    render(): HTMLInputElement {
+    render(): HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');
         wrapper.className = ("form-div");
         document.getElementById("main-form").prepend(wrapper);
-        new FieldLabel(this.name, this.label, wrapper).render();
+        new FieldLabel(this.id + this.name, this.label, wrapper).render();
         const inputElement = <HTMLInputElement>document.createElement('input');
-        inputElement.id = this.name;  
+        inputElement.id = this.id + this.name;  
         inputElement.type = this.type;
         inputElement.value = this.value;
         wrapper.append(inputElement);

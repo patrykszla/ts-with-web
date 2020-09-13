@@ -1,9 +1,9 @@
 import { Storage } from "./IStorage";
 import { keyArray } from "./Variables";
-// import { valuesArr } from "./Variables";
+import { valuesArr } from "./Variables";
+import {DocumentList} from "./DocumentList";
 
 export class LocalStorage implements Storage {
-    
 
     clear(): void {
         localStorage.clear();
@@ -38,5 +38,31 @@ export class LocalStorage implements Storage {
         let documents = localStorage.getItem(keyArray) ? JSON.parse(localStorage.getItem(keyArray)) : [];
 
         return documents;
+    }
+
+    removeDocument(id:string): void {
+        var newLocalStorage = new LocalStorage();
+        newLocalStorage.removeItem(id);
+        var arrayOfDocumentsRemove = [];
+        var documents = newLocalStorage.getDocuments();
+
+        for (let i = 0; i<documents.length; i++) {
+            if (documents[i] != id) {
+                arrayOfDocumentsRemove[i] = documents[i];
+                
+            } else {
+                console.log('delete');
+            }
+        }
+
+        var filtered = arrayOfDocumentsRemove.filter(function (el) {
+            return el != null;
+          });
+          
+          console.log(filtered);
+        console.log(arrayOfDocumentsRemove);
+        newLocalStorage.removeItem(keyArray);
+        newLocalStorage.setItem(keyArray, JSON.stringify(filtered));
+    
     }
 }
