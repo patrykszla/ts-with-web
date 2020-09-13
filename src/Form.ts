@@ -22,69 +22,37 @@ export class Form {
     constructor(){}
 
     insertValue(documentData:any){
-       
+        
+
         this.arrayOfFields.forEach(el => {
+            
             if(documentData.hasOwnProperty(el.name)){
                 el.value = documentData[el.name];
             }
-        if(el.value === "preferuje e-learning"){
-            console.log('preferuje');
+        if(documentData[el.name] === "select-field") {
+            console.log(el.value);
         }
         })
-
-        
+        console.log(documentData);
     }
     
     getValue() {
-        // const answer: { [key: string]: string | number } = {};
-
-        // this.arrayOfFieldsforEach(el => {
-        //     answer[el.name] = (<HTMLInputElement>document.getElementById(el.id + el.name)).value;
-        // })
-        // return answer;
-        
-        // const arrayOfValues: {[key:string]: string | number} = {};
-        // this.arrayOfFields.forEach(el => {
-        //     arrayOfValues[el.name] = 
-        // }
-
-        
-        const initialValue:any = {};
+        const initialValue: { [key: string]: string | number | boolean } = {};
+        // const initialValue:{ [key: string]: string; } = {}
         for (var i = 0; i < this.arrayOfFields.length; i++ ) {
-            initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
-            var element = document.createElement("p");
-            element.innerText = (this.arrayOfFields[i].getValue());
-            // document.getElementById('render-wrapper').after(element);
+            if (this.arrayOfFields[i].type === 'checkbox') {
+                initialValue[this.arrayOfFields[i].name] = (<HTMLInputElement>document.getElementById(this.arrayOfFields[i].id + this.arrayOfFields[i].name)).checked;
+                console.log((<HTMLInputElement>document.getElementById(this.arrayOfFields[i].id + this.arrayOfFields[i].name)).checked)
+            } else {
+                initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
+            }
+            // initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
+            // var element = document.createElement("p");
+            // element.innerText = (this.arrayOfFields[i].getValue());
         }
-
-
- 
-    /*for (var i = 0; i < this.arrayOfFields.length; i++ ) {
-        valuesArr.unshift(this.arrayOfFields[i].getValue());
-        
-        console.log(this.arrayOfFields[i].getValue());
-        var element = document.createElement("p");
-        element.innerText = (this.arrayOfFields[i].getValue());
-        document.getElementById('render-wrapper').after(element);
-        
-        
-    }*/
-    // let myObj:object = Object.assign({}, valuesArr);
-    // let arr1 = [1];
-    // let arr2= [3];
-    // let myObj:object = Object.assign(arr1, arr2);
-    // console.log(JSON.stringify(myObj));
-    //     console.log(myObj);
-    // console.log(valuesArr);
-    // console.log(JSON.stringify(valuesArr));
-    // console.log(answer);
+        // var stuff: { [key: string]: string; } = {};
     console.log(initialValue);
     return initialValue;
-
-    
-
-    
-    
 }
     render():void {
         for (var i = 0; i < this.arrayOfFields.length; i++) {
@@ -106,31 +74,10 @@ export class Form {
         })
      
     }
-    
 
-    
-      save() {
-
+    save() {
         const save = new LocalStorage();
         save.saveDocument(this.getValue());
-        
-        // documentList.render();
         window.location.href = '/index.html';
-
     }
-    // renderList() {
-    //     var buttonBackTwo : HTMLButtonElement = document.createElement('button');
-    //     buttonBackTwo.id = 'back2';
-    //     buttonBackTwo.innerText = 'Wstecz';
-    //     buttonBackTwo.className = 'back';
-    //     document.getElementById('document-list-wrapper').append(buttonBackTwo);
-    //     document.getElementById('back2').addEventListener('click', () => {
-    //         window.location.href = '/index.html'
-    //     })
-    //     const documentList = new DocumentList();
-    //     documentList.getDocumentList();
-    // }
-        
-
-    
 }

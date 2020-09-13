@@ -14,7 +14,7 @@ class App {
             const getParam = new Router().getParam("id");
             const documentList = new DocumentList();
             const getDocument = documentList.getDocument(getParam);
-            console.log(getDocument);
+            // console.log(getDocument);
             const form = new Form();
             form.insertValue(getDocument);
             form.render();
@@ -33,10 +33,7 @@ class App {
         } else if (window.location.pathname == "/form-creator.html") {
             var newFormCreator = new FormCreator();
             newFormCreator.newForm();
-
         }
-      
-        
     }
 }
 

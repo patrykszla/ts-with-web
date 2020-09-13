@@ -20,7 +20,7 @@ export class DateField implements IField {
         // console.log(date);
 
         var today:Date = new Date();
-        var dd: string = JSON.stringify(today.getDay()+5);
+        var dd: string = JSON.stringify(today.getDay());
         var mm: string = JSON.stringify(today.getDate());
         var yy: string = JSON.stringify(today.getFullYear());
 
