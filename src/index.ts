@@ -25,6 +25,7 @@ class App {
             var back : HTMLButtonElement = document.createElement('button');
             back.innerText = 'Wstecz';
             back.className = 'back';
+            back.classList.add('btn')
             back.addEventListener('click', () => {
                 window.location.href = '/index.html'
             })

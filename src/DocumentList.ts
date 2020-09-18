@@ -28,6 +28,7 @@ export class DocumentList {
             var newLi = document.createElement('li');
             divForLink.append(newLi);
             var link = document.createElement('a');
+            link.classList.add("document-list-link");
             link.innerText = this.arrayOfDocuments[i];
             link.href = "edit-document.html?id="+this.arrayOfDocuments[i];
             // link.href = "./index.html";
@@ -35,7 +36,8 @@ export class DocumentList {
 
             var buttonDelete = document.createElement('button');
             buttonDelete.innerText = 'Usun';
-            buttonDelete.className = 'button-delete'
+            buttonDelete.className = 'button-delete';
+            buttonDelete.classList.add('btn')
             newLi.append(buttonDelete);
             buttonDelete.addEventListener('click', () => {
               this.removeDocument(this.arrayOfDocuments[i]);

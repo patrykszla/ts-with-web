@@ -27,6 +27,7 @@ export class TextAreaField implements IField {
         const textAreaElement = <HTMLTextAreaElement>document.createElement('textarea');
         textAreaElement.id = this.id + this.name;
         textAreaElement.value = this.value;
+        textAreaElement.classList.add('textarea');
         wrapper.append(textAreaElement);
         return textAreaElement
     }
