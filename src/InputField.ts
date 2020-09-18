@@ -9,6 +9,7 @@ export class InputField implements IField {
     type: FieldType;
     value: string;
     id: string = new Date().getTime().toString();
+    events: string[] = ["focusout", "input", "change"]
     constructor(name: string, label: string, type: FieldType, value?: string) {
         this.name = name ? name : this.name;
         this.label = label ? label : this.label;
@@ -16,9 +17,23 @@ export class InputField implements IField {
         this.value = value? value : this.value;
     }
     getValue(): string {
-        var inputVal = (<HTMLInputElement>document.getElementById(this.id + this.name)).value;
-        return inputVal
+        // var inputVal = (<HTMLInputElement>document.getElementById(this.id + this.name)).value;
+        return this.value;
     }
+
+    addDefaultEvents(input:HTMLInputElement): void {
+        this.events.forEach(e => input.addEventListener(e, event => this.setValue(<string>(<HTMLInputElement>event.target).value)));
+    }
+
+    setValue(value:string) :boolean{
+        this.value = value;
+        if(this.getValue() === value){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     render(): HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');
         wrapper.className = ("form-div");
@@ -29,6 +44,7 @@ export class InputField implements IField {
         inputElement.type = this.type;
         inputElement.value = this.value;
         wrapper.append(inputElement);
+        this.addDefaultEvents(inputElement);
         return inputElement
     }
 }

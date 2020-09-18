@@ -7,7 +7,7 @@ export class SelectField implements IField {
     label: string;
     type: FieldType.Select;
     value: string;
-    options: Array<string> = ['zaocznie', 'dziennie', 'wieczorowo'];
+    options: string[];
     id: string = new Date().getTime().toString();
     events: string[] = ["focusout", "input", "change"];
     constructor(name:string, label: string, type:FieldType.Select, value?: string, options?: Array<string>) {
@@ -20,18 +20,9 @@ export class SelectField implements IField {
         }
     }
     getValue(): string {
-        var selectValue = (<HTMLSelectElement>document.getElementById(this.id + this.name)).value;
-        console.log(selectValue);
-        return selectValue;
-        
-        
-        // if (selectValue == 'external') {
-        //     selectValue = "Tryb zaoczny";
-        // } else {
-        //     selectValue = "Tryb dzienny";
-        // }
-        // return selectValue
-        // return this.value;
+        // var selectValue = (<HTMLSelectElement>document.getElementById(this.id + this.name)).value;
+        // console.log(selectValue);
+        return this.value
     }
     setValue(value: string): boolean {
         this.value = value;
@@ -40,12 +31,10 @@ export class SelectField implements IField {
         }else{
             return false;
         }
-        
     }
 
     addDefaultEvents(select:HTMLSelectElement): void {
         this.events.forEach(e => select.addEventListener(e, event => this.setValue(<string>(<HTMLSelectElement>event.target).value)));
-        
     }
     
     render():HTMLDivElement {
@@ -54,18 +43,19 @@ export class SelectField implements IField {
         document.getElementById("main-form").prepend(wrapper);
         new FieldLabel(this.id + this.name, this.label, wrapper).render();
         const newSelect = <HTMLSelectElement>document.createElement('select');
+        newSelect.classList.add('select')
         newSelect.id = this.id + this.name;
-        // this.options = ['zaocznie', 'dziennie'];
+        newSelect.value = this.value;
         
         this.options.forEach(element => {
            const option = <HTMLOptionElement>document.createElement('option');
+           option.classList.add("select-option")
            option.value = element;
            option.innerText = element;
            newSelect.append(option);
-            
         });
-       
         wrapper.append(newSelect);
+        this.addDefaultEvents(newSelect);
         return wrapper;
     }
 }

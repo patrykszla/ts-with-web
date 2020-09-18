@@ -1,6 +1,4 @@
 import { FieldType } from "./EFieldType";
-// import { IField } from "./IField";
-// import { FieldLabel } from "./FieldLabel";
 import { InputField } from "./InputField";
 import { CheckboxField } from "./CheckboxField";
 import { SelectField } from "./SelectField";
@@ -12,16 +10,17 @@ import { DocumentList } from "./DocumentList";
 // import { Storage } from "./IStorage";
 
 export class Form {
+    options: string[] = ['zaocznie', 'dziennie', 'wieczorowo']
     arrayOfFields = [new TextAreaField("text-area", "Uwagi: ", FieldType.TextArea, ' '), 
     new CheckboxField("checkbox", 'Czy preferujesz e-learning: ', FieldType.Checkbox, ' '), 
-    new SelectField("select-field", 'Tryb studiów do wyboru: ', FieldType.Select, ' '),
-    new InputField("input-email","e-mail: ", FieldType.Email, ' '),
+    new SelectField("select-field", 'Tryb studiów do wyboru: ', FieldType.Select, '' , this.options),
+    new InputField("input-email","E-mail: ", FieldType.Email, ' '),
     new InputField("input-surname", "Nazwisko: ", FieldType.Text, ' '),
     new InputField("input-name", "Imie: ", FieldType.Text, ' '),
     new DateField("data", "Data:", FieldType.Data, ' ' )];
     constructor(){}
 
-    insertValue(documentData:any){
+    insertValue(documentData: any){
         
 
         this.arrayOfFields.forEach(el => {
@@ -46,11 +45,8 @@ export class Form {
             } else {
                 initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
             }
-            // initialValue[this.arrayOfFields[i].name] = this.arrayOfFields[i].getValue();
-            // var element = document.createElement("p");
-            // element.innerText = (this.arrayOfFields[i].getValue());
         }
-        // var stuff: { [key: string]: string; } = {};
+       
     console.log(initialValue);
     return initialValue;
 }
@@ -61,8 +57,12 @@ export class Form {
         let buttonSave: HTMLButtonElement = document.createElement('button');
         buttonSave.id = 'save';
         buttonSave.innerText = "Zapisz";
+        buttonSave.classList.add('btn');
+        buttonSave.classList.add('save');
         document.getElementById('main-form').after(buttonSave);
         let buttonBack = document.createElement('button');
+        buttonBack.classList.add('btn');
+        buttonBack.classList.add('back');
         document.getElementById('save').addEventListener('click',() => {
             this.save();
         })

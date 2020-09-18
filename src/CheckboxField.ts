@@ -37,7 +37,10 @@ export class CheckboxField implements IField {
 
     render():HTMLDivElement {
         const wrapper = <HTMLDivElement>document.createElement('div');
+        const span = <HTMLSpanElement>document.createElement('span');
+        span.classList.add('checkmark');
         wrapper.className = ("form-div");
+        wrapper.classList.add('checkbox-div')
         document.getElementById('main-form').prepend(wrapper);
         new FieldLabel(this.id + this.name, this.label, wrapper).render();
         const checkbox = <HTMLInputElement>document.createElement('input');
@@ -49,6 +52,7 @@ export class CheckboxField implements IField {
         }
         console.log(this.value);
         wrapper.append(checkbox);
+        checkbox.after(span);
         return wrapper;
     }
 }
